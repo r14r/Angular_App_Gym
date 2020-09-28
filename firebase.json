@@ -1,0 +1,30 @@
+{
+  "hosting": {
+    "public": "dist/gym-app",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "predeploy": [
+      "ng lint",
+      "ng build --prod"
+    ],
+    "rewrites": [
+      {
+        "source": "/api/superadmin/**",
+        "function": "superadmin"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "functions": {
+    "predeploy": [
+      "npm --prefix functions run lint",
+      "npm --prefix functions run build"
+    ]
+  }
+}
